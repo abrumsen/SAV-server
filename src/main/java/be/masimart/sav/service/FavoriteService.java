@@ -15,16 +15,19 @@ public class FavoriteService {
         this.favoriteRepository = favoriteRepository;
     }
 
+    // Get all favorites for a user
     public List<Favorite> getFavoritesByUserId(int userId) {
         return favoriteRepository.findByUserId(userId);
     }
 
+    // Add a new favorite
     @Transactional
     public Favorite addFavorite(int userId, int productId) {
         Favorite favorite = new Favorite(userId, productId);
         return favoriteRepository.save(favorite);
     }
 
+    // Delete a favorite
     @Transactional
     public Optional<Long> deleteFavorite(Long favoriteId) {
         Optional<Favorite> favorite = favoriteRepository.findById(favoriteId);

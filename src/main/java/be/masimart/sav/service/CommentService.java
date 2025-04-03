@@ -3,6 +3,7 @@ package be.masimart.sav.service;
 import be.masimart.sav.model.Comment;
 import be.masimart.sav.repository.CommentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -22,22 +23,25 @@ public class CommentService {
     }
 
     // Add a new comment
+    @Transactional
     public Comment addComment(int productId, String username, String comment, Byte rating) {
         Comment newComment = new Comment(productId, username, comment, rating, new java.sql.Date(System.currentTimeMillis()));
         return commentRepository.save(newComment);
     }
 
     // Update a comment
+    @Transactional
     public Optional<Comment> updateComment(Long reviewId, Byte rating, String comment) {
         return commentRepository.findById(reviewId).map(existingComment -> {
             existingComment.setRating(rating);
             existingComment.setComment(comment);
-            existingComment.setTimestamp(new java.sql.Date(System.currentTimeMillis()));  // Corrected
+            existingComment.setTimestamp(new java.sql.Date(System.currentTimeMillis()));
             return commentRepository.save(existingComment);
         });
     }
 
     // Delete a comment
+    @Transactional
     public Optional<Long> deleteComment(Long reviewId) {
         return commentRepository.findById(reviewId).map(comment -> {
             commentRepository.delete(comment);
