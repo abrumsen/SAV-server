@@ -65,6 +65,13 @@ public class TrackingState {
         this.orderId = orderId;
     }
 
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
     public Integer getActionId() {
         return actionId;
     }
