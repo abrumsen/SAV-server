@@ -16,14 +16,14 @@ public class Favorite {
     private Long favoriteId;
 
     @Column(name = "id_customer")
-    private int userId;
+    private Integer userId;
 
     @Column(name = "id_product")
-    private int productId;
+    private Integer productId;
 
     // Constructors
     public Favorite() {}
-    public Favorite(int userId, int productId) {
+    public Favorite(Integer userId, Integer productId) {
         this.userId = userId;
         this.productId = productId;
     }
@@ -36,17 +36,17 @@ public class Favorite {
         this.favoriteId = favoriteId;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 }

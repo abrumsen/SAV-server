@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "warranty")
@@ -15,20 +15,20 @@ public class Warranty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int warrantyId;
+    private Integer warrantyId;
 
     @Column(name = "num_order")
     private Long orderId;
 
     @Column(name = "id_product")
-    private int productId;
+    private Integer productId;
 
     @Column(name = "end_date")
-    private Date warrantyEndDate;
+    private LocalDateTime warrantyEndDate;
 
     // Constructors
     public Warranty() {}
-    public Warranty(int warrantyId, Long orderId, int productId, Date warrantyEndDate) {
+    public Warranty(Integer warrantyId, Long orderId, Integer productId, LocalDateTime warrantyEndDate) {
         this.warrantyId = warrantyId;
         this.orderId = orderId;
         this.productId = productId;
@@ -36,10 +36,10 @@ public class Warranty {
     }
 
     // Getters & setters
-    public int getWarrantyId() {
+    public Integer getWarrantyId() {
         return warrantyId;
     }
-    public void setWarrantyId(int warrantyId) {
+    public void setWarrantyId(Integer warrantyId) {
         this.warrantyId = warrantyId;
     }
 
@@ -50,17 +50,17 @@ public class Warranty {
         this.orderId = orderId;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
-    public Date getWarrantyEndDate() {
+    public LocalDateTime getWarrantyEndDate() {
         return warrantyEndDate;
     }
-    public void setWarrantyEndDate(Date warrantyEndDate) {
+    public void setWarrantyEndDate(LocalDateTime warrantyEndDate) {
         this.warrantyEndDate = warrantyEndDate;
     }
 }

@@ -20,7 +20,7 @@ public class FavoriteController {
 
     // GET /favorites/all/{userId} → Get user's favorites
     @GetMapping("/all/{userId}")
-    public ResponseEntity<List<Favorite>> getFavoritesByUserId(@PathVariable int userId) {
+    public ResponseEntity<List<Favorite>> getFavoritesByUserId(@PathVariable Integer userId) {
         List<Favorite> favorites = favoriteService.getFavoritesByUserId(userId);
         return ResponseEntity.ok(favorites);
     }
@@ -28,8 +28,8 @@ public class FavoriteController {
     // POST /favorites → Add a favorite
     @PostMapping
     public ResponseEntity<Map<String, Long>> addFavorite(@RequestBody Map<String, Integer> request) {
-        int userId = request.get("userId");
-        int productId = request.get("productId");
+        Integer userId = request.get("userId");
+        Integer productId = request.get("productId");
         Favorite favorite = favoriteService.addFavorite(userId, productId);
         return ResponseEntity.ok(Map.of("favoriteId", favorite.getFavoriteId()));
     }

@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "comment")
@@ -18,7 +18,7 @@ public class Comment {
     private Long reviewId;
 
     @Column(name = "id_product")
-    private int productId;
+    private Integer productId;
 
     @Column(name = "username")
     private String username;
@@ -30,11 +30,11 @@ public class Comment {
     private Byte rating;
 
     @Column(name = "timestamp")
-    private Date timestamp;
+    private LocalDateTime timestamp;
 
     // Constructors
     public Comment() {}
-    public Comment(int productId, String username, String comment, Byte rating, Date timestamp) {
+    public Comment(Integer productId, String username, String comment, Byte rating, LocalDateTime timestamp) {
         this.productId = productId;
         this.username = username;
         this.comment = comment;
@@ -50,10 +50,10 @@ public class Comment {
         this.reviewId = reviewId;
     }
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -78,10 +78,10 @@ public class Comment {
         this.rating = rating;
     }
 
-    public Date getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 }

@@ -5,7 +5,7 @@ import be.masimart.sav.repository.ChatMessageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,18 +18,18 @@ public class ChatMessageService {
     }
 
     // Get all messages for a chatroom
-    public List<ChatMessage> getMessagesByChatId(int chatId) {
+    public List<ChatMessage> getMessagesByChatId(Integer chatId) {
         return chatMessageRepository.findByChatId(chatId);
     }
 
     // Add a new message
     @Transactional
-    public ChatMessage addMessage(int chatId, String username, String message) {
+    public ChatMessage addMessage(Integer chatId, String username, String message) {
         ChatMessage chatMessage = new ChatMessage(
                 chatId,
                 username,
                 message,
-                new Date(System.currentTimeMillis())
+                LocalDateTime.now()
         );
         return chatMessageRepository.save(chatMessage);
     }
@@ -39,7 +39,7 @@ public class ChatMessageService {
     public Optional<ChatMessage> updateMessage(Long messageId, String message) {
         return chatMessageRepository.findById(messageId).map(existingMessage -> {
             existingMessage.setMessage(message);
-            existingMessage.setTimestamp(new Date(System.currentTimeMillis()));
+            existingMessage.setTimestamp(LocalDateTime.now());
             return chatMessageRepository.save(existingMessage);
         });
     }

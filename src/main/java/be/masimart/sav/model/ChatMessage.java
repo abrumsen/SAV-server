@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "chat_message")
@@ -18,7 +18,7 @@ public class ChatMessage {
     private Long id;
 
     @Column(name = "id_chat")
-    private int chatId;
+    private Integer chatId;
 
     @Column(name = "username")
     private String username;
@@ -27,11 +27,11 @@ public class ChatMessage {
     private String message;
 
     @Column(name = "timestamp")
-    private Date timestamp;
+    private LocalDateTime timestamp;
 
     // Constructors
     public ChatMessage() {}
-    public ChatMessage(int chatId, String username, String message, Date timestamp) {
+    public ChatMessage(Integer chatId, String username, String message, LocalDateTime timestamp) {
         this.chatId = chatId;
         this.username = username;
         this.message = message;
@@ -46,10 +46,10 @@ public class ChatMessage {
         this.id = id;
     }
 
-    public int getChatId() {
+    public Integer getChatId() {
         return chatId;
     }
-    public void setChatId(int chatId) {
+    public void setChatId(Integer chatId) {
         this.chatId = chatId;
     }
 
@@ -67,10 +67,10 @@ public class ChatMessage {
         this.message = message;
     }
 
-    public Date getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 }

@@ -47,8 +47,8 @@ public class WarrantyController {
     @PostMapping
     public ResponseEntity<?> registerWarranty(@RequestBody Map<String, Object> payload) {
         Long orderId = Long.valueOf(payload.get("orderId").toString());
-        int productId = Integer.parseInt(payload.get("productId").toString());
-        int warrantyPeriodMonths = Integer.parseInt(payload.get("warrantyPeriodMonths").toString());
+        Integer productId = Integer.parseInt(payload.get("productId").toString());
+        Integer warrantyPeriodMonths = Integer.parseInt(payload.get("warrantyPeriodMonths").toString());
 
         Warranty registeredWarranty = warrantyService.registerWarranty(orderId, productId, warrantyPeriodMonths);
 
@@ -64,8 +64,8 @@ public class WarrantyController {
             @PathVariable Long orderId,
             @RequestBody Map<String, Object> payload) {
 
-        int productId = Integer.parseInt(payload.get("productId").toString());
-        int warrantyPeriodMonths = Integer.parseInt(payload.get("warrantyPeriodMonths").toString());
+        Integer productId = Integer.parseInt(payload.get("productId").toString());
+        Integer warrantyPeriodMonths = Integer.parseInt(payload.get("warrantyPeriodMonths").toString());
 
         return warrantyService.extendWarranty(orderId, productId, warrantyPeriodMonths)
                 .map(warranty -> {

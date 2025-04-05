@@ -20,7 +20,7 @@ public class CommentController {
 
     // GET /reviews/{productId} → Get comments for a product
     @GetMapping("/{productId}")
-    public ResponseEntity<List<Comment>> getCommentsByProductId(@PathVariable int productId) {
+    public ResponseEntity<List<Comment>> getCommentsByProductId(@PathVariable Integer productId) {
         List<Comment> comments = commentService.getCommentsByProductId(productId);
         return ResponseEntity.ok(comments);
     }
@@ -28,7 +28,7 @@ public class CommentController {
     // POST /reviews → Add a comment
     @PostMapping
     public ResponseEntity<Map<String, Long>> addComment(@RequestBody Map<String, Object> request) {
-        int productId = (int) request.get("productId");
+        Integer productId = (Integer) request.get("productId");
         String username = (String) request.get("username");
         String comment = (String) request.get("comment");
         Byte rating = ((Number) request.get("rating")).byteValue();

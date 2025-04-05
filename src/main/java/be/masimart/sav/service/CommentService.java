@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 public class CommentService {
@@ -18,14 +19,14 @@ public class CommentService {
     }
 
     // Get all comments for a product
-    public List<Comment> getCommentsByProductId(int productId) {
+    public List<Comment> getCommentsByProductId(Integer productId) {
         return commentRepository.findByProductId(productId);
     }
 
     // Add a new comment
     @Transactional
-    public Comment addComment(int productId, String username, String comment, Byte rating) {
-        Comment newComment = new Comment(productId, username, comment, rating, new java.sql.Date(System.currentTimeMillis()));
+    public Comment addComment(Integer productId, String username, String comment, Byte rating) {
+        Comment newComment = new Comment(productId, username, comment, rating, LocalDateTime.now());
         return commentRepository.save(newComment);
     }
 
@@ -35,7 +36,7 @@ public class CommentService {
         return commentRepository.findById(reviewId).map(existingComment -> {
             existingComment.setRating(rating);
             existingComment.setComment(comment);
-            existingComment.setTimestamp(new java.sql.Date(System.currentTimeMillis()));
+            existingComment.setTimestamp(LocalDateTime.now());
             return commentRepository.save(existingComment);
         });
     }

@@ -21,7 +21,7 @@ public class ChatMessageController {
 
     // GET /webchat/conversation/{chatId} → Get messages for a chatroom
     @GetMapping("/conversation/{chatId}")
-    public ResponseEntity<List<ChatMessage>> getConversation(@PathVariable int chatId) {
+    public ResponseEntity<List<ChatMessage>> getConversation(@PathVariable Integer chatId) {
         List<ChatMessage> messages = chatMessageService.getMessagesByChatId(chatId);
         return ResponseEntity.ok(messages);
     }
@@ -29,7 +29,7 @@ public class ChatMessageController {
     // POST /webchat → Send a message
     @PostMapping
     public ResponseEntity<Map<String, Long>> sendMessage(@RequestBody Map<String, Object> payload) {
-        int chatId = Integer.parseInt(payload.get("chatId").toString());
+        Integer chatId = Integer.parseInt(payload.get("chatId").toString());
         String username = (String) payload.get("username");
         String message = (String) payload.get("message");
 

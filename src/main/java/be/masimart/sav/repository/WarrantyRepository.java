@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface WarrantyRepository extends JpaRepository<Warranty, Integer> {
     List<Warranty> findByOrderId(Long orderId);
-    Optional<Warranty> findByOrderIdAndProductId(Long orderId, int productId);
+    Optional<Warranty> findByOrderIdAndProductId(Long orderId, Integer productId);
 }

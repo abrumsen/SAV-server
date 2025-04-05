@@ -16,13 +16,13 @@ public class FavoriteService {
     }
 
     // Get all favorites for a user
-    public List<Favorite> getFavoritesByUserId(int userId) {
+    public List<Favorite> getFavoritesByUserId(Integer userId) {
         return favoriteRepository.findByUserId(userId);
     }
 
     // Add a new favorite
     @Transactional
-    public Favorite addFavorite(int userId, int productId) {
+    public Favorite addFavorite(Integer userId, Integer productId) {
         Favorite favorite = new Favorite(userId, productId);
         return favoriteRepository.save(favorite);
     }
