@@ -17,24 +17,24 @@ public class Comment {
     @Column(name = "id_comment")
     private Long reviewId;
 
-    @Column(name = "id_product")
+    @Column(name = "id_product", nullable = false)
     private Integer productId;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "comment", columnDefinition = "TEXT")
+    @Column(name = "comment", nullable = false)
     private String comment;
 
-    @Column(name = "rating", columnDefinition = "TINYINT UNSIGNED")
-    private Byte rating;
+    @Column(name = "rating", nullable = false)
+    private Integer rating;
 
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
     // Constructors
     public Comment() {}
-    public Comment(Integer productId, String username, String comment, Byte rating, LocalDateTime timestamp) {
+    public Comment(Integer productId, String username, String comment, Integer rating, LocalDateTime timestamp) {
         this.productId = productId;
         this.username = username;
         this.comment = comment;
@@ -71,10 +71,10 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Byte getRating() {
+    public Integer getRating() {
         return rating;
     }
-    public void setRating(Byte rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 

@@ -15,10 +15,10 @@ public class Favorite {
     @Column(name = "id")
     private Long favoriteId;
 
-    @Column(name = "id_customer")
+    @Column(name = "id_customer", nullable = false)
     private Integer userId;
 
-    @Column(name = "id_product")
+    @Column(name = "id_product", nullable = false)
     private Integer productId;
 
     // Constructors

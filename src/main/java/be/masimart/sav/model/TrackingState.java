@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.validation.constraints.Negative;
 
 import java.time.LocalDateTime;
 
@@ -19,16 +20,16 @@ public class TrackingState {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "num_order")
+    @Column(name = "num_order", nullable = false)
     private Long orderId;
 
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
-    @Column(name = "id_action")
+    @Column(name = "id_action", nullable = false)
     private Integer actionId;
 
-    @Column(name = "location", length = 2)
+    @Column(name = "location", nullable = false, length = 2)
     private String location;
 
     @ManyToOne

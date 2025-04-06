@@ -17,13 +17,13 @@ public class Warranty {
     @Column(name = "id")
     private Integer warrantyId;
 
-    @Column(name = "num_order")
+    @Column(name = "num_order", nullable = false)
     private Long orderId;
 
-    @Column(name = "id_product")
+    @Column(name = "id_product", nullable = false)
     private Integer productId;
 
-    @Column(name = "end_date")
+    @Column(name = "end_date", nullable = false)
     private LocalDateTime warrantyEndDate;
 
     // Constructors

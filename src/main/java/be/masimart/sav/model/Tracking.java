@@ -20,16 +20,16 @@ public class Tracking {
     @Column(name = "num_order")
     private Long orderId;
 
-    @Column(name = "delivery_address_street")
+    @Column(name = "delivery_address_street", nullable = false)
     private String deliveryAddressStreet;
 
-    @Column(name = "delivery_address_num")
+    @Column(name = "delivery_address_num", nullable = false)
     private String deliveryAddressNum;
 
-    @Column(name = "delivery_address_pc")
+    @Column(name = "delivery_address_pc", nullable = false)
     private String deliveryAddressPc;
 
-    @Column(name = "delivery_address_city")
+    @Column(name = "delivery_address_city", nullable = false)
     private String deliveryAddressCity;
 
     @Column(name = "comment")
@@ -38,10 +38,10 @@ public class Tracking {
     @Column(name = "number_change")
     private Integer changes;
 
-    @Column(name = "id_driver")
+    @Column(name = "id_driver", nullable = false)
     private Long driverId;
 
-    @Column(name = "delivery_date")
+    @Column(name = "delivery_date", nullable = false)
     private LocalDateTime deliveryDate;
 
     @OneToMany(mappedBy = "tracking")

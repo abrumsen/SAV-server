@@ -25,14 +25,14 @@ public class CommentService {
 
     // Add a new comment
     @Transactional
-    public Comment addComment(Integer productId, String username, String comment, Byte rating) {
+    public Comment addComment(Integer productId, String username, String comment, Integer rating) {
         Comment newComment = new Comment(productId, username, comment, rating, LocalDateTime.now());
         return commentRepository.save(newComment);
     }
 
     // Update a comment
     @Transactional
-    public Optional<Comment> updateComment(Long reviewId, Byte rating, String comment) {
+    public Optional<Comment> updateComment(Long reviewId, Integer rating, String comment) {
         return commentRepository.findById(reviewId).map(existingComment -> {
             existingComment.setRating(rating);
             existingComment.setComment(comment);

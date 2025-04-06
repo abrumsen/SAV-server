@@ -15,7 +15,7 @@ public class Action {
     @Column(name = "id_action")
     private Integer actionId;
 
-    @Column(name = "action")
+    @Column(name = "action", nullable = false)
     private String action;
 
     @Column(name = "description")

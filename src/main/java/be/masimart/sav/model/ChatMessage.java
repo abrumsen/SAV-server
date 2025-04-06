@@ -17,16 +17,16 @@ public class ChatMessage {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "id_chat")
+    @Column(name = "id_chat", nullable = false)
     private Integer chatId;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "message")
+    @Column(name = "message", nullable = false)
     private String message;
 
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
 
     // Constructors

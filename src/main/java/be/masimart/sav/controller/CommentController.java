@@ -31,7 +31,7 @@ public class CommentController {
         Integer productId = (Integer) request.get("productId");
         String username = (String) request.get("username");
         String comment = (String) request.get("comment");
-        Byte rating = ((Number) request.get("rating")).byteValue();
+        Integer rating = (Integer) request.get("rating");
 
         Comment newComment = commentService.addComment(productId, username, comment, rating);
         return ResponseEntity.ok(Map.of("reviewId", newComment.getReviewId()));
@@ -40,7 +40,7 @@ public class CommentController {
     // PUT /reviews/{reviewId} → Update a comment
     @PutMapping("/{reviewId}")
     public ResponseEntity<Comment> updateComment(@PathVariable Long reviewId, @RequestBody Map<String, Object> request) {
-        Byte rating = ((Number) request.get("rating")).byteValue();
+        Integer rating = (Integer) request.get("rating");
         String comment = (String) request.get("comment");
 
         return commentService.updateComment(reviewId, rating, comment)
