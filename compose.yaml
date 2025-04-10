@@ -1,0 +1,20 @@
+services:
+  database:
+    image: mysql:9.2.0
+    container_name: mysql_db_services
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  app:
+    build: .
+    container_name: sav_api_server
+    restart: always
+    depends_on:
+      - database
+    environment:
+      MYSQL_CONNECTION_URL: ${MYSQL_CONNECTION_URL}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8080:8080"
