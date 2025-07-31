@@ -11,6 +11,8 @@ import java.util.*;
 @Service
 public class TrackingService {
 
+    public static final String LOCATION = "location";
+    public static final String TIMESTAMP = "timestamp";
     @Autowired
     private TrackingRepository trackingRepo;
 
@@ -48,13 +50,13 @@ public class TrackingService {
         response.put("comment", tracking.getComment());
         response.put("changes", tracking.getChanges());
         response.put("status", currentState.getAction().getAction());
-        response.put("location", currentState.getLocation());
-        response.put("timestamp", currentState.getTimestamp());
+        response.put(LOCATION, currentState.getLocation());
+        response.put(TIMESTAMP, currentState.getTimestamp());
         response.put("deliveryDate", tracking.getDeliveryDate());
         response.put("history", history.stream().map(state ->
-                Map.of("timestamp", state.getTimestamp(),
+                Map.of(TIMESTAMP, state.getTimestamp(),
                         "event", state.getAction().getAction(),
-                        "location", state.getLocation())
+                        LOCATION, state.getLocation())
         ).toList());
 
         return response;
@@ -75,8 +77,8 @@ public class TrackingService {
                             "city", t.getDeliveryAddressCity()
                     ),
                     "status", state.getAction().getAction(),
-                    "location", state.getLocation(),
-                    "timestamp", state.getTimestamp(),
+                    LOCATION, state.getLocation(),
+                    TIMESTAMP, state.getTimestamp(),
                     "deliveryDate", t.getDeliveryDate()
             ));
         }

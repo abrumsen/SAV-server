@@ -14,13 +14,15 @@ import java.util.Map;
 @RestController
 @RequestMapping("/warranty")
 public class WarrantyController {
+    public static final String PRODUCT_ID = "productId";
+    public static final String WARRANTY_END_DATE = "warrantyEndDate";
     private final WarrantyService warrantyService;
 
     public WarrantyController(WarrantyService warrantyService) {
         this.warrantyService = warrantyService;
     }
 
-    // GET /warranty/{orderId}
+
     @GetMapping("/{orderId}")
     public ResponseEntity<?> getWarrantyInfo(@PathVariable Long orderId) {
         List<Warranty> warranties = warrantyService.getWarrantiesByOrderId(orderId);
@@ -32,8 +34,8 @@ public class WarrantyController {
         List<Map<String, Object>> warrantyInfoList = new ArrayList<>();
         for (Warranty warranty : warranties) {
             Map<String, Object> warrantyInfo = new HashMap<>();
-            warrantyInfo.put("productId", warranty.getProductId());
-            warrantyInfo.put("warrantyEndDate", warranty.getWarrantyEndDate());
+            warrantyInfo.put(PRODUCT_ID, warranty.getProductId());
+            warrantyInfo.put(WARRANTY_END_DATE, warranty.getWarrantyEndDate());
             warrantyInfoList.add(warrantyInfo);
         }
 
@@ -47,32 +49,31 @@ public class WarrantyController {
     @PostMapping
     public ResponseEntity<?> registerWarranty(@RequestBody Map<String, Object> payload) {
         Long orderId = Long.valueOf(payload.get("orderId").toString());
-        Integer productId = Integer.parseInt(payload.get("productId").toString());
+        Integer productId = Integer.parseInt(payload.get(PRODUCT_ID).toString());
         Integer warrantyPeriodMonths = Integer.parseInt(payload.get("warrantyPeriodMonths").toString());
 
         Warranty registeredWarranty = warrantyService.registerWarranty(orderId, productId, warrantyPeriodMonths);
 
         Map<String, Object> response = new HashMap<>();
-        response.put("warrantyEndDate", registeredWarranty.getWarrantyEndDate());
+        response.put(WARRANTY_END_DATE, registeredWarranty.getWarrantyEndDate());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // PUT /warranty/{orderId}
     @PutMapping("/{orderId}")
     public ResponseEntity<?> extendWarranty(
             @PathVariable Long orderId,
             @RequestBody Map<String, Object> payload) {
 
-        Integer productId = Integer.parseInt(payload.get("productId").toString());
+        Integer productId = Integer.parseInt(payload.get(PRODUCT_ID).toString());
         Integer warrantyPeriodMonths = Integer.parseInt(payload.get("warrantyPeriodMonths").toString());
 
         return warrantyService.extendWarranty(orderId, productId, warrantyPeriodMonths)
                 .map(warranty -> {
                     Map<String, Object> response = new HashMap<>();
                     response.put("orderId", warranty.getOrderId());
-                    response.put("productId", warranty.getProductId());
-                    response.put("warrantyEndDate", warranty.getWarrantyEndDate());
+                    response.put(PRODUCT_ID, warranty.getProductId());
+                    response.put(WARRANTY_END_DATE, warranty.getWarrantyEndDate());
 
                     return ResponseEntity.ok(response);
                 })
