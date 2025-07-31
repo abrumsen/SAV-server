@@ -6,6 +6,7 @@ import be.masimart.sav.model.StatusRemboursement;
 import be.masimart.sav.repository.AssRepository;
 import be.masimart.sav.repository.CauseRepository;
 import be.masimart.sav.repository.StatusRemboursementRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -77,7 +78,7 @@ public class AssService {
     @Transactional
     public Map<String, Long> deleteClaim(Long claimId) {
         if (!assRepository.existsById(claimId)) {
-            throw new RuntimeException("Claim not found with id: " + claimId);
+            throw new EntityNotFoundException("Claim not found with id: " + claimId);
         }
 
         assRepository.deleteById(claimId);
